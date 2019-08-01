@@ -17,11 +17,13 @@
     EFS - When the player touches this goal post (flag), regenerate the level. (#4)
     EFS - After goal, spawn the player at the beginning of it again, make it longer than it was before.  (#4)
 
--- pictures not right
--- door not showing up
--- princess like snail/hearts and kiss
--- suitor opposing
--- invincibility
+    EFS = for project
+        - Music at the wedding
+        - Storage for flags related to the ring and princess 
+        - Flag so know when door to chapel is open or closed
+        - Door locations are at the end of the level 
+
+
 
 ]]
 
@@ -33,6 +35,9 @@ function LevelMaker.generate(width, height)
     local objects = {}
 
     local tileID = TILE_ID_GROUND
+
+
+    -- EFS (project). music at the wedding
     gSounds['music']:play()
     gSounds['wedding']:stop()
     
@@ -53,7 +58,6 @@ function LevelMaker.generate(width, height)
     local hasFoundPrincess = false
     local thePrincess = nil
 
-
     -- EFS: Flag so know when block is going to get in the way
     local hasBlock = false
 
@@ -61,7 +65,7 @@ function LevelMaker.generate(width, height)
     local theFlag = nil
     local thePole = nil
 
-    -- EFS: Flag so know when flag and pole exist
+    -- EFS: Flag so know when door to chapel is open or closed
     local theDoorClosed = nil
     local theDoorOpen = nil
 
@@ -69,11 +73,7 @@ function LevelMaker.generate(width, height)
     local frameKey = math.random(1,4)
     local frameLock = nil
 
-
-    -- EFS: Randomly choose a color but make sure in combo (project)
-    local frameRing = math.random(1,4)
-
-    -- EFS: Flag/pole are at the end of the level (#3)
+    -- EFS: Door locations are at the end of the level 
     local theDoorClosedPositionX = width-7
     local theDoorClosedPositionY = 3
 
@@ -248,7 +248,6 @@ function LevelMaker.generate(width, height)
                         consumable = false,
                         solid = true,
                         
-
                          -- EFS: Collision with lock/only works if we have key (#2)
                         onCollide = function(object, player)
                             if (player == nil) then
@@ -273,11 +272,10 @@ function LevelMaker.generate(width, height)
 
                             end
 
-
                         end
                     }
 
-       --         theLock.visible = true
+     --         theLock.visible = true
                 table.insert(objects, theLock)
 
             end 
@@ -311,7 +309,7 @@ function LevelMaker.generate(width, height)
                 
             end
 
-            -- maybe something wrong with princess image
+            -- EFS princess and ring
 
             if math.random(2) == 1 and not hasFoundPrincess and hasGivenRing and not hasBlock then
                 hasFoundPrincess = true
@@ -372,7 +370,7 @@ function LevelMaker.generate(width, height)
                             y = (blockHeight - 1) * TILE_SIZE - 4,
                             width = 16,
                             height = 16,
-                            frame = frameRing,
+                            frame = math.random(#RINGS),
                             collidable = false,
                             consumable = true,
                             solid = false,
@@ -398,7 +396,29 @@ function LevelMaker.generate(width, height)
             end
         end
 
-    -- EFS: Open and closed doors
+    -- EFS: Open and closed doors to chapel/play wedding music/show hearts with princess 
+
+    theHeart = GameObject {
+        texture = 'hearts',
+        x = ((theDoorClosedPositionX + 1) * TILE_SIZE),
+        y = ((theDoorClosedPositionY - 1) * TILE_SIZE) +5,
+        width = 16,
+        height = 32,
+        frame = 5,
+        collidable = false,
+        consumable = false,
+        solid = false,
+
+        onConsume = function(player)
+            gSounds['pickup']:play()
+            player.score = player.score + 100
+    end
+    }
+
+    theHeart.visible = false
+    table.insert(objects, theHeart)
+    
+
 
     theDoorOpen = GameObject {
         texture = 'chapel',
@@ -416,6 +436,9 @@ function LevelMaker.generate(width, height)
              thePrincess.visible = true
              thePrincess.x = object.x
              thePrincess.y = object.y
+             theHeart.visible = true
+             theHeart.x = object.x
+             theHeart.y = object.y
              gSounds['wedding']:play()
              gSounds['music']:stop()
 
