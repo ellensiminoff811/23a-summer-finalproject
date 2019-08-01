@@ -24,8 +24,6 @@ function GameObject:init(def)
 
     -- EFS (project)
     self.scalefactor = def.scalefactor or 1
-    self.mirrored = def.mirrored or false
-
 
     -- EFS create a hiding flag
     self.visible = true
@@ -45,15 +43,9 @@ function GameObject:render()
     if not self.visible then
         -- EFS: Allow locks to become hidden        
         return
-    end    
-    
-    if self.mirrored then
-        love.graphics.draw(gTextures[self.texture], gFrames[self.texture][self.frame], self.x, self.y, 0, -self.scalefactor, self.scalefactor)
-    else
-        love.graphics.draw(gTextures[self.texture], gFrames[self.texture][self.frame], self.x, self.y, 0, self.scalefactor, self.scalefactor)
-    end
-
-    
+    end      
+ 
+    love.graphics.draw(gTextures[self.texture], gFrames[self.texture][self.frame], self.x, self.y, 0, self.scalefactor, self.scalefactor)
        
 end
 

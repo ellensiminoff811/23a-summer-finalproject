@@ -28,7 +28,6 @@
         - Add invincibility timer
 
 
-
 ]]
 
 LevelMaker = Class{}
@@ -39,7 +38,6 @@ function LevelMaker.generate(width, height)
     local objects = {}
 
     local tileID = TILE_ID_GROUND
-
 
     -- EFS (project). music at the wedding
     gSounds['music']:play()
@@ -91,7 +89,6 @@ function LevelMaker.generate(width, height)
     elseif frameKey == 4 then
         frameLock = 8
     end  
-
 
     -- insert blank tables into tiles for later access
     for x = 1, height do
@@ -314,11 +311,10 @@ function LevelMaker.generate(width, height)
             end
 
             -- EFS add princess and ring
-            -- Put princess in correct direction
             -- Spawn the chapel doors
             -- Add invincibility timer
 
-            if math.random(2) == 1 and not hasFoundPrincess and hasGivenRing and not hasBlock then
+            if math.random(4) == 1 and not hasFoundPrincess and hasGivenRing and not hasBlock and hasPlacedLock and hasPlacedKey then
                 hasFoundPrincess = true
                 thePrincess = GameObject {
                         texture = 'peach',
@@ -331,7 +327,6 @@ function LevelMaker.generate(width, height)
                         consumable = false,
                         solid = true,
                         scalefactor = .45,
-                        mirrored = true,
                         
                          -- EFS: Collision with princess/only works if we have ring 
                         onCollide = function(object, player)
@@ -368,11 +363,11 @@ function LevelMaker.generate(width, height)
             end
 
               -- EFS: Get ring (project)
-            if math.random(2) == 1 and not hasGivenRing and not hasBlock then
+            if math.random(6) == 1 and not hasGivenRing and not hasBlock then
                 hasGivenRing = true
                 theRing = GameObject {
                         texture = 'rings',
-                        x = (x-1) * TILE_SIZE,
+                        x = x * TILE_SIZE,
                         y = (blockHeight - 1) * TILE_SIZE - 4,
                         width = 16,
                         height = 16,
@@ -381,7 +376,6 @@ function LevelMaker.generate(width, height)
                         consumable = true,
                         solid = false,
                         scalefactor = .05,
-
 
                        -- EFS: Add to the player's score/call function so we know we hae kye
                         onConsume = function(player)
@@ -394,7 +388,6 @@ function LevelMaker.generate(width, height)
                         end
                     }
                 
-
                 table.insert(objects, theRing)
                 
             end
@@ -403,7 +396,8 @@ function LevelMaker.generate(width, height)
 
     end   
 
-    -- EFS: Open and closed doors to chapel/play wedding music/show hearts with princess 
+    -- EFS: Open and closed doors to chapel
+    -- EFS: Play wedding music/show hearts with princess 
 
     theHeart = GameObject {
         texture = 'hearts',
@@ -428,7 +422,7 @@ function LevelMaker.generate(width, height)
     theDoorOpen = GameObject {
         texture = 'chapel',
         x = ((theDoorClosedPositionX + 1) * TILE_SIZE),
-        y = ((theDoorClosedPositionY - 1) * TILE_SIZE) +5,
+        y = ((theDoorClosedPositionY - 1) * TILE_SIZE) + 5,
         width = 16,
         height = 32,
         frame = 4,
@@ -443,10 +437,9 @@ function LevelMaker.generate(width, height)
              thePrincess.y = object.y
              theHeart.visible = true
              theHeart.x = object.x
-             theHeart.y = object.y
+             theHeart.y = object.y - thePrincess.height
              gSounds['wedding']:play()
              gSounds['music']:stop()
-
 
         end
     }

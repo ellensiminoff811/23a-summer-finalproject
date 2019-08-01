@@ -97,8 +97,6 @@ function Player:renderInventory()
         love.graphics.print(toWrite, 4, currentLine+lineHeight*lineNumber-1)
     end
 
-
-
 end
 
 --  EFS - Check Ground (#1)
@@ -140,9 +138,8 @@ function Player:checkLeftCollisions(dt)
         end
     end
 end
-
-    
--- EFs might do if poisoned
+ 
+-- EFS: Increase walk speed once invincible
 function Player:getWalkSpeed()
     if self.isInvincible then
         return PLAYER_WALK_SPEED * 2

@@ -86,7 +86,7 @@ gTextures = {
     ['rings'] = love.graphics.newImage('graphics/rings.png'),
     ['hearts'] = love.graphics.newImage('graphics/hearts.png'),
     ['chapel'] = love.graphics.newImage('graphics/doors_and_windows.png'),
-    ['peach'] = love.graphics.newImage('graphics/peach.png')
+    ['peach'] = love.graphics.newImage('graphics/princess_got_item.png')
 }
 
 gFrames = {
@@ -110,7 +110,7 @@ gFrames = {
     ['rings'] = GenerateQuads(gTextures['rings'], 240, 360),
     ['chapel'] = GenerateQuads(gTextures['chapel'], 16, 32),
     ['hearts'] = GenerateQuads(gTextures['hearts'], 16, 16),
-    ['peach'] = GenerateQuads(gTextures['peach'], 35, 50),
+    ['peach'] = GenerateQuads(gTextures['peach'], 30, 50),
 }
 
 -- these need to be added after gFrames is initialized because they refer to gFrames from within

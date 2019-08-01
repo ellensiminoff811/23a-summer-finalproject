@@ -21,4 +21,10 @@ door not working
 stuff on top of each other
 
 stuff on top of each other
-not necessarily invincible working - when collides other direction
+not necessarily invincible working - when collides other direction - fine when get rid of mirroring
+
+
+
+fixed invincible to be in both directions
+
+key and ring wind up on top of each other still
