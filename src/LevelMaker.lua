@@ -22,6 +22,10 @@
         - Storage for flags related to the ring and princess 
         - Flag so know when door to chapel is open or closed
         - Door locations are at the end of the level 
+        - Add princess and ring
+        - Put princess in correct direction
+        - Spawn the chapel doors
+        - Add invincibility timer
 
 
 
@@ -309,7 +313,10 @@ function LevelMaker.generate(width, height)
                 
             end
 
-            -- EFS princess and ring
+            -- EFS add princess and ring
+            -- Put princess in correct direction
+            -- Spawn the chapel doors
+            -- Add invincibility timer
 
             if math.random(2) == 1 and not hasFoundPrincess and hasGivenRing and not hasBlock then
                 hasFoundPrincess = true
@@ -326,7 +333,6 @@ function LevelMaker.generate(width, height)
                         scalefactor = .45,
                         mirrored = true,
                         
-
                          -- EFS: Collision with princess/only works if we have ring 
                         onCollide = function(object, player)
                             if (player == nil) then
@@ -361,40 +367,41 @@ function LevelMaker.generate(width, height)
 
             end
 
-                  -- EFS: Get ring (project)
-                if math.random(6) == 1 and not hasGivenRing and not hasBlock then
-                    hasGivenRing = true
-                    theRing = GameObject {
-                            texture = 'rings',
-                            x = (x) * TILE_SIZE,
-                            y = (blockHeight - 1) * TILE_SIZE - 4,
-                            width = 16,
-                            height = 16,
-                            frame = math.random(#RINGS),
-                            collidable = false,
-                            consumable = true,
-                            solid = false,
-                            scalefactor = .05,
+              -- EFS: Get ring (project)
+            if math.random(2) == 1 and not hasGivenRing and not hasBlock then
+                hasGivenRing = true
+                theRing = GameObject {
+                        texture = 'rings',
+                        x = (x-1) * TILE_SIZE,
+                        y = (blockHeight - 1) * TILE_SIZE - 4,
+                        width = 16,
+                        height = 16,
+                        frame = math.random(#RINGS),
+                        collidable = false,
+                        consumable = true,
+                        solid = false,
+                        scalefactor = .05,
 
 
-                           -- EFS: Add to the player's score/call function so we know we hae kye
-                            onConsume = function(player)
-                                gSounds['pickup']:play()
-                                player.score = player.score + 100
-                                player.invincibleTimer = player.invincibleTimer + 10
+                       -- EFS: Add to the player's score/call function so we know we hae kye
+                        onConsume = function(player)
+                            gSounds['pickup']:play()
+                            player.score = player.score + 100
+                            player.invincibleTimer = player.invincibleTimer + 10
 
-                                player:addInventoryItem({id="Ring One"})
+                            player:addInventoryItem({id="Ring One"})
 
-                            end
-                        }
-                    
+                        end
+                    }
+                
 
-                    table.insert(objects, theRing)
-                    
-                end
-
+                table.insert(objects, theRing)
+                
             end
+
         end
+
+    end   
 
     -- EFS: Open and closed doors to chapel/play wedding music/show hearts with princess 
 
@@ -412,14 +419,12 @@ function LevelMaker.generate(width, height)
         onConsume = function(player)
             gSounds['pickup']:play()
             player.score = player.score + 100
-    end
+        end
     }
 
     theHeart.visible = false
     table.insert(objects, theHeart)
     
-
-
     theDoorOpen = GameObject {
         texture = 'chapel',
         x = ((theDoorClosedPositionX + 1) * TILE_SIZE),
@@ -470,66 +475,6 @@ function LevelMaker.generate(width, height)
     table.insert(objects, theDoorClosed)
 
    
-
-
-   
-
-        
-             
-  --[[          -- collision function takes itself
-        onCollide = function(obj, ignoredParam)
-
-            -- spawn a door if we haven't already hit the block
-            if not obj.hit then
-
-                -- chance to spawn gem, not guaranteed
-                if math.random(1) == 1 then
-
-                    -- maintain reference so we can set it to nil
-                    local theDoorOpen = GameObject {
-                        texture = 'chapel',
-                        x = ((theDoorClosedPositionX - 1) * TILE_SIZE) + 10,
-                        y = ((theDoorClosedPositionY - 1) * TILE_SIZE),
-                        width = 16,
-                        height = 16,
-                        frame = 4,
-                        collidable = true,
-                        consumable = true,
-                        solid = false,
-
-                        -- door has its own function to add to the player's score
-                        onConsume = function(player, object)
-                            gSounds['pickup']:play()
-                            player.score = player.score + 100
-
-
-                        end
-                    }
-                        
-                    -- make the gem move up from the block and play a sound
-                    Timer.tween(0.1, {
-                        [gem] = {y = (blockHeight - 2) * TILE_SIZE}
-                    })
-                    gSounds['powerup-reveal']:play()
-
-                    table.insert(objects, theDoorOpen)
-                end
-
-                obj.hit = true
-            end
-
-            gSounds['empty-block']:play()
-        end
-    }
-
-
-]]
-        -- EFS: Add to the player's score/call function so we know we hae kye
-                       -- EFS: Add to the player's score/call function so we know we hae kye
-                     
-
- 
-
     -- EFS: Flag/pole are at the end of the level (#3)
     local flagAndPolePositionX = width-1
     local flagAndPolePositionY = 3
