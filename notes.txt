@@ -1,0 +1,15 @@
+Notes
+
+-- sprite sheet for animation and rings
+
+http://www.mariomayhem.com/downloads/sprites/smb3/smb3_allies_sheet.png
+
+https://www.deviantart.com/fantasyxii/art/New-SMB2-Princess-Peach-Sprite-Sheet-306042777
+
+Full Door
+doesn't look right - animation and sizes
+collide with door
+kiss 
+eveything runs into each other
+real ring
+door not working
