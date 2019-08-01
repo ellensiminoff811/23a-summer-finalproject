@@ -83,7 +83,7 @@ gTextures = {
     ['flags'] = love.graphics.newImage('graphics/flags.png'),
 
     -- EFS project - maybe not do this way
-    ['rings'] = love.graphics.newImage('graphics/rings.png'),
+    ['rings'] = love.graphics.newImage('graphics/ringscopy.png'),
     ['chapel'] = love.graphics.newImage('graphics/doors_and_windows.png'),
     ['peach'] = love.graphics.newImage('graphics/peach.png')
 }

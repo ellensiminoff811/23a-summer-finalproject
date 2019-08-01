@@ -317,7 +317,7 @@ function LevelMaker.generate(width, height)
                 hasFoundPrincess = true
                 thePrincess = GameObject {
                         texture = 'peach',
-                        x = (x) * TILE_SIZE,
+                        x = x * TILE_SIZE,
                         y = (blockHeight - 1) * TILE_SIZE - 4,
                         width = 16,
                         height = 20,    
@@ -376,6 +376,7 @@ function LevelMaker.generate(width, height)
                             collidable = false,
                             consumable = true,
                             solid = false,
+                            
 
                            -- EFS: Add to the player's score/call function so we know we hae kye
                             onConsume = function(player)
