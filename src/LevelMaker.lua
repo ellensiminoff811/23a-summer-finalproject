@@ -376,7 +376,8 @@ function LevelMaker.generate(width, height)
                             collidable = false,
                             consumable = true,
                             solid = false,
-                            
+                            scalefactor = .05,
+
 
                            -- EFS: Add to the player's score/call function so we know we hae kye
                             onConsume = function(player)

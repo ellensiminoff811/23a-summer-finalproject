@@ -47,7 +47,7 @@ function GameObject:render()
     end
 
     if self.mirrored then
-            love.graphics.draw(gTextures[self.texture], gFrames[self.texture][self.frame], self.x, self.y, 0, -self.scalefactor, self.scalefactor)
+        love.graphics.draw(gTextures[self.texture], gFrames[self.texture][self.frame], self.x, self.y, 0, -self.scalefactor, self.scalefactor)
     else
         love.graphics.draw(gTextures[self.texture], gFrames[self.texture][self.frame], self.x, self.y, 0, self.scalefactor, self.scalefactor)
     end

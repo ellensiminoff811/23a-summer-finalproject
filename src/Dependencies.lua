@@ -83,7 +83,7 @@ gTextures = {
     ['flags'] = love.graphics.newImage('graphics/flags.png'),
 
     -- EFS project - maybe not do this way
-    ['rings'] = love.graphics.newImage('graphics/ringscopy.png'),
+    ['rings'] = love.graphics.newImage('graphics/rings.png'),
     ['chapel'] = love.graphics.newImage('graphics/doors_and_windows.png'),
     ['peach'] = love.graphics.newImage('graphics/peach.png')
 }
@@ -106,7 +106,7 @@ gFrames = {
     ['poles'] = GenerateQuads(gTextures['flags'], 16, 16),
 
     -- EFS project
-    ['rings'] = GenerateQuads(gTextures['rings'], 16, 16),
+    ['rings'] = GenerateQuads(gTextures['rings'], 240, 360),
     ['chapel'] = GenerateQuads(gTextures['chapel'], 16, 32),
     ['peach'] = GenerateQuads(gTextures['peach'], 35, 50),
 }
