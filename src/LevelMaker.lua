@@ -26,7 +26,8 @@
         - Put princess in correct direction
         - Spawn the chapel doors
         - Add invincibility timer
-
+        - Credit to https://www.deviantart.com/fantasyxii/art/New-SMB2-Princess-Peach-Sprite-Sheet-306042777 for style sheet
+        - Images for rings from imgbin, kssping, clipartix, and pixabay
 
 ]]
 
