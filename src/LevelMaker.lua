@@ -364,7 +364,7 @@ function LevelMaker.generate(width, height)
             end
 
               -- EFS: Get ring (project)
-            if math.random(6) == 1 and not hasGivenRing and not hasBlock then
+            if math.random(6) == 1 and not hasGivenRing and not hasBlock and hasPlacedLock and hasPlacedKey then
                 hasGivenRing = true
                 theRing = GameObject {
                         texture = 'rings',
