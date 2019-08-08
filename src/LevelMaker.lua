@@ -165,6 +165,7 @@ function LevelMaker.generate(width, height)
             end
             -- EFS: Add block flag
             -- chance to spawn a block
+            -- Check for Door Closed Position X
             if math.random(10) == 1 and theDoorClosedPositionX > x then
                 hasBlock = true
                 table.insert(objects,
