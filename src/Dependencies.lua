@@ -11,6 +11,8 @@
     well as the assets for our game, rather than pollute our main.lua file.
 
     EFS - Added dependencies of textures and frames of keys, locks, flags and poles
+    EFS - Added dependencies of textures and frames for rings, princess, chapel doors
+    EFS - Added wedding sounds
 ]]
 
 --
@@ -56,6 +58,7 @@ require 'src/Tile'
 require 'src/TileMap'
 
 
+-- EFS: Added wedding    
 gSounds = {
     ['jump'] = love.audio.newSource('sounds/jump.wav'),
     ['death'] = love.audio.newSource('sounds/death.wav'),

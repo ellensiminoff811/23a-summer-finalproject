@@ -4,6 +4,8 @@
 
     Author: Colton Ogden
     cogden@cs50.harvard.edu
+
+    EFS - Added a scalefactor because my images were too big
 ]]
 
 GameObject = Class{}

@@ -8,6 +8,8 @@
     cogden@cs50.harvard.edu
 
     Some global constants for our application.
+
+    EFS: Added rings (project)
 ]]
 
 -- size of our actual window
@@ -90,7 +92,7 @@ GEMS = {
     1, 2, 3, 4, 5, 6, 7, 8
 }
 
---- EFS
+--- EFS added rings
 RINGS = {
     1, 2, 3
 }

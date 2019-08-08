@@ -4,6 +4,8 @@
 
     Author: Colton Ogden
     cogden@cs50.harvard.edu
+
+    EFS: Add Invincibility flag (project)
 ]]
 
 PlayerWalkingState = Class{__includes = BaseState}

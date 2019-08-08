@@ -9,6 +9,7 @@
 
     EFS - Added way to avoid chasm on entry (#1)
     EFS - Added logic to show when a key is present (#2)
+    EFS - ADded invincibility ability, timer and speed (project)
 ]]
 
 Player = Class{__includes = Entity}
@@ -47,6 +48,7 @@ function Player:addInventoryItem(item)
 
 end
 
+-- EFS: Added invincibility timer
 function Player:update(dt)
     if self.isInvincible then
         self.invincibleTimer = self.invincibleTimer - dt 
@@ -61,6 +63,7 @@ function Player:update(dt)
     Entity.update(self, dt)
 end
     
+--- EFS: Added xxx for invincible    
 function Player:render()
     Entity.render(self) 
       -- EFS in invincible gets stars
@@ -70,7 +73,7 @@ function Player:render()
        
 end
 
--- EFS: Added logic to show when a key is present (#2)
+-- EFS: Added logic to show when a key or ring is present (#2)
 function Player:renderInventory()
     local currentLine = 35
     local lineHeight = 20

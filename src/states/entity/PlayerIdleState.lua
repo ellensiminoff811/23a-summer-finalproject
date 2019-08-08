@@ -4,6 +4,8 @@
 
     Author: Colton Ogden
     cogden@cs50.harvard.edu
+
+    EFS: Added invincibility logic (project)
 ]]
 
 PlayerIdleState = Class{__includes = BaseState}
